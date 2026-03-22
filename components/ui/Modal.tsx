@@ -10,9 +10,10 @@ export interface ModalProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen';
   children: React.ReactNode;
   footer?: React.ReactNode;
+  hideCloseButton?: boolean;
 }
 
-export function Modal({ isOpen, onClose, title, size = 'md', children, footer }: ModalProps) {
+export function Modal({ isOpen, onClose, title, size = 'md', children, footer, hideCloseButton = false }: ModalProps) {
   
   useEffect(() => {
     if (isOpen) {
@@ -42,14 +43,18 @@ export function Modal({ isOpen, onClose, title, size = 'md', children, footer }:
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] shrink-0">
-          <h2 className="text-lg font-semibold text-[var(--text-primary)]">
-            {title}
-          </h2>
-          <Button variant="ghost" size="icon" onClick={onClose} className="-mr-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-            <X className="h-5 w-5" />
-          </Button>
-        </div>
+        {(title || !hideCloseButton) && (
+          <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] shrink-0">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
+              {title}
+            </h2>
+            {!hideCloseButton && (
+              <Button variant="ghost" size="icon" onClick={onClose} className="-mr-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                <X className="h-5 w-5" />
+              </Button>
+            )}
+          </div>
+        )}
 
         {/* Body */}
         <div className="p-6 overflow-y-auto flex-1">
