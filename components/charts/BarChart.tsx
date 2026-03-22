@@ -8,7 +8,7 @@ export interface BarChartProps {
   categories: string[];
   index: string;
   colors?: string[];
-  valueFormatter?: (value: number) => string;
+  valueFormatter?: (value: any) => string;
   layout?: 'horizontal' | 'vertical';
   stacked?: boolean;
   className?: string;

@@ -8,7 +8,7 @@ export interface DonutChartProps {
   category: string;
   index: string;
   colors?: string[];
-  valueFormatter?: (value: number) => string;
+  valueFormatter?: (value: any) => string;
   className?: string;
   height?: number;
 }
